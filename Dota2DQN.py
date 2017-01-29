@@ -52,9 +52,9 @@ def run():
         action_batch = np.asarray([data[1] for data in minibatch])
         reward_batch = np.asarray([data[2] for data in minibatch])
         next_state_batch = np.asarray([data[3] for data in minibatch])
-        value_batch = np.asarray([data[4] for data in minibatch])
+        value_batch = np.asarray([data[4] for data in minibatch] + v_t)
 
-        advantages = reward_batch - value_batch
+        advantages = reward_batch + GAMMA * value_batch[1:] - value_batch[:-1]
         #print("value_batch", value_batch)
         #print("reward_batch", reward_batch)
         #print("advantages", advantages)
