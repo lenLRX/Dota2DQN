@@ -14,12 +14,13 @@ ActionMap = {
 #Helper function
 def ParseLine(ll):
     ll = ll.split(" ")
-    return np.asarray([float(s) for s in ll[1:23]]),float(ll[23]),ActionMap[ll[24]]
+    return np.asarray([float(s) for s in ll[1:24]]),float(ll[24]),ActionMap[ll[25]]
 
 class Dota2Env():
 
-    def __init__(self):
-        self.dota = Dota2Comm()
+    def __init__(self, name):
+        self.name = name
+        self.dota = Dota2Comm(name)
         self.StateQueue = queue.Queue()
         self.OrderQueue = queue.Queue()
 
